@@ -45,7 +45,8 @@ const AddProduct = () => {
 
 
   return (
-    <div className="my-16 bg-[#11285A] lg:px-20 px-5 pt-5 pb-20 rounded-lg">
+   <div className='max-w-7xl mx-auto px-5 lg:px-0'>
+      <div className="my-16 bg-[#11285A] lg:px-20 px-5 pt-5 pb-20 rounded-lg">
       <h2 className="text-center md:text-4xl text-xl font-semibold my-5 text-white">Add Your Product Here</h2>
 
       <form onSubmit={handleAddProduct}>
@@ -60,7 +61,7 @@ const AddProduct = () => {
                 type="text"
                 name="name"
                 placeholder="Name"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full capitalize"
               />
             </label>
           </div>
@@ -73,7 +74,7 @@ const AddProduct = () => {
                 type="text"
                 name="brand"
                 placeholder="Brand Name"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full capitalize"
               />
             </label>
           </div>
@@ -91,7 +92,7 @@ const AddProduct = () => {
                 type="text"
                 name="type"
                 placeholder="Name"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full capitalize"
               />
             </label>
           </div>
@@ -104,7 +105,7 @@ const AddProduct = () => {
                 type="text"
                 name="price"
                 placeholder="price"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full capitalize"
               />
             </label>
           </div>
@@ -121,7 +122,7 @@ const AddProduct = () => {
                 type="text"
                 name="description"
                 placeholder="Short description"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full capitalize"
               />
             </label>
           </div>
@@ -134,7 +135,7 @@ const AddProduct = () => {
                 type="text"
                 name="rating"
                 placeholder="rating"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full upp"
               />
             </label>
           </div>
@@ -153,7 +154,7 @@ const AddProduct = () => {
                 type="text"
                 name="photo"
                 placeholder="Photo URL"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full capitalize"
               />
             </label>
           </div>
@@ -162,10 +163,11 @@ const AddProduct = () => {
 
 
 
-        <button className="btn bg-[#F5C34B] border-none text-white normal-case hover:bg-[#ddb24e] btn-block mt-10">Add Product</button>
+        <button className="btn bg-[#F5C34B] border-none text-white capitalize hover:bg-[#ddb24e] btn-block mt-10">Add Product</button>
 
       </form>
     </div>
+   </div> 
   );
 };
 

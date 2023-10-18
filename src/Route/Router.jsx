@@ -5,6 +5,7 @@ import MyCart from "../Component/MyCart/MyCart";
 import Home from "../Component/Home/Home";
 import Login from "../Component/Login/Login";
 import Register from "../Component/Register/Register";
+import AllProduct from "../Component/AllProduct/AllProduct";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+        loader: () => fetch('/data.json')
       },
       {
         path: "/addProduct",
@@ -31,6 +33,11 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register></Register>,
       },
+      {
+        path: "/allProduct/:brand_name",
+        element: <AllProduct></AllProduct>,
+        loader: () => fetch('http://localhost:5000/product')
+      }
     ]
   }
   
