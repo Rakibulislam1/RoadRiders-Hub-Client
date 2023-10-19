@@ -4,16 +4,23 @@ import Banner from "../Banner/Banner";
 
 const AllProduct = () => {
   const allProduct = useLoaderData();
-  const filterProduct = useParams();
-  console.log(filterProduct);
+  // const filterProduct = [useParams()];
+  console.log(allProduct);
 
   return (
     <div>
       <Banner></Banner>
       <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-5 px-5">
-        {allProduct.map((product) => (
-          <AllProductCard key={product._id} product={product}></AllProductCard>
-        ))}
+        {allProduct.length ? (
+          allProduct.map((product) => (
+            <AllProductCard
+              key={product._id}
+              product={product}
+            ></AllProductCard>
+          ))
+        ) : (
+          <h1>Coming soon!</h1>
+        )}
       </div>
     </div>
   );

@@ -159,10 +159,6 @@ const AddProduct = () => {
             </label>
           </div>
         </div>
-
-
-
-
         <button className="btn bg-[#F5C34B] border-none text-white capitalize hover:bg-[#ddb24e] btn-block mt-10">Add Product</button>
 
       </form>

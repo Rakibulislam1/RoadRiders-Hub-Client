@@ -1,68 +1,37 @@
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 
-const Banner = () => {
+// import required modules
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+
+import car1 from '../../assets/car1.jpg'
+function Banner() {
   return (
-    <div>
-      <div className="carousel max-h-[100vh]">
-        <div id="slide1" className="carousel-item relative w-full">
-          <img
-            src="https://img.freepik.com/free-photo/view-car-running-high-speed_23-2150635443.jpg?t=st=1697628644~exp=1697632244~hmac=5aaaad1704cd1b0a45f7d9b327658a6995442f7fbb99c57edabf9c619b3bc069&w=900"
-            className="w-full h-[70%]"
-          />
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-[35%]">
-            <a href="#slide4" className="btn btn-circle">
-              ❮
-            </a>
-            <a href="#slide2" className="btn btn-circle">
-              ❯
-            </a>
-          </div>
-        </div>
-        <div id="slide2" className="carousel-item relative w-full">
-          <img
-            src="https://c4.wallpaperflare.com/wallpaper/943/325/116/car-bmw-m3-bmw-race-cars-wallpaper-preview.jpg"
-            className="w-full h-[70%]"
-          />
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-[35%]">
-            <a href="#slide1" className="btn btn-circle">
-              ❮
-            </a>
-            <a href="#slide3" className="btn btn-circle">
-              ❯
-            </a>
-          </div>
-        </div>
-        <div id="slide3" className="carousel-item relative w-full">
-          <img
-            src="https://c4.wallpaperflare.com/wallpaper/943/325/116/car-bmw-m3-bmw-race-cars-wallpaper-preview.jpg"
-            className="w-full h-[70%]"
-          />
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-[35%]">
-            <a href="#slide2" className="btn btn-circle">
-              ❮
-            </a>
-            <a href="#slide4" className="btn btn-circle">
-              ❯
-            </a>
-          </div>
-        </div>
-        <div id="slide4" className="carousel-item relative w-full">
-          <img
-            src="https://c4.wallpaperflare.com/wallpaper/943/325/116/car-bmw-m3-bmw-race-cars-wallpaper-preview.jpg"
-            className="w-full h-[70%]"
-          />
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-[35%]">
-            <a href="#slide3" className="btn btn-circle">
-              ❮
-            </a>
-            <a href="#slide1" className="btn btn-circle">
-              ❯
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper h-[100vh]"
+      >
+        <SwiperSlide><img className='h-[100vh] w-full' src={car1} alt="" /></SwiperSlide>
+        <SwiperSlide><img className='h-[100vh] w-full' src="https://images.unsplash.com/photo-1539043776866-20389265e4da?auto=format&fit=crop&q=80&w=1470&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" /></SwiperSlide>
+        
+      </Swiper>
   );
-};
+}
 
 export default Banner;

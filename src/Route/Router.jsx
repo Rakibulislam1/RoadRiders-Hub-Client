@@ -19,7 +19,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch('/data.json')
+        loader: () => fetch("/data.json"),
       },
       {
         path: "/addProduct",
@@ -40,22 +40,23 @@ const router = createBrowserRouter([
       {
         path: "/allProduct/:brand_name",
         element: <AllProduct></AllProduct>,
-        loader: () => fetch('http://localhost:5000/product')
+        loader: ({ params }) =>
+          fetch("http://localhost:5000/allProduct/" + params.brand_name),
       },
       {
         path: "/updateProduct/:id",
         element: <UpdateProducts></UpdateProducts>,
-        loader: ({params}) => fetch(`http://localhost:5000/product/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/product/${params.id}`),
       },
       {
         path: "/productDetails/:id",
         element: <ProductDetails></ProductDetails>,
-        loader: ({params}) => fetch(`http://localhost:5000/product/${params.id}`)
-      }
-    ]
-  }
-  
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/product/${params.id}`),
+      },
+    ],
+  },
 ]);
-
 
 export default router;

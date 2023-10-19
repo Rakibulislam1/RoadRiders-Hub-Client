@@ -1,17 +1,49 @@
-import {  useLoaderData } from "react-router-dom";
-
+import { useLoaderData } from "react-router-dom";
 
 const ProductDetails = () => {
+  const product = useLoaderData();
+  const {
+    _id: id,
+    name,
+    photo,
+    brand,
+    type,
+    price,
+    description,
+    rating,
+  } = product;
 
+  console.log("======", product);
 
-  const product = useLoaderData()
-  const { name, photo, brand, type, price, description, rating,  } = product;
+  const handleClick = () => {
+    const myCart = localStorage.getItem("my-cart");
+    if (!myCart) {
+      localStorage.setItem("my-cart", JSON.stringify([]));
+    }
+
+    if (myCart) {
+      const myCart = JSON.parse(localStorage.getItem("my-cart"));
+      const car = {
+        id,
+        name,
+        brand,
+        price,
+      };
+
+      const cars = myCart.find((item) => item.id === car.id);
+
+      if (cars) {
+        console.log("Already added");
+      } else localStorage.setItem("my-cart", JSON.stringify([...myCart, car]));
+    }
+  };
 
   return (
     <div className="flex justify-center my-10">
       <div className="bg-blue-100 shadow-xl rounded-lg w-4/12">
         <figure>
-          <img className="h-[200px] w-full rounded-t-lg"
+          <img
+            className="h-[200px] w-full rounded-t-lg"
             src={photo}
             alt={photo}
           />
@@ -24,7 +56,9 @@ const ProductDetails = () => {
           <p>Description: {description}</p>
           <small>Ratings: {rating}</small>
           <div className="flex my-3">
-            <button className="btn btn-info">Add To Cart</button>
+            <button className="btn btn-info" onClick={handleClick}>
+              Add To Cart
+            </button>
           </div>
         </div>
       </div>
