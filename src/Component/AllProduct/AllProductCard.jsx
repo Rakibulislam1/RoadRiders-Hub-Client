@@ -1,6 +1,9 @@
+import { Link } from "react-router-dom";
+
 /* eslint-disable react/prop-types */
 const AllProductCard = ({ product }) => {
-  const { name, photo, brand, type, price, description, rating,  } = product;
+  const {_id, name, photo, brand, type, price, description, rating,  } = product;
+
 
   return (
     <div className="my-10">
@@ -21,8 +24,8 @@ const AllProductCard = ({ product }) => {
           }
           <small>Ratings: {rating}</small>
           <div className="flex justify-center gap-5 my-3">
-            <button className="btn btn-sm btn-success">Details</button>
-            <button className="btn btn-sm btn-error">Update</button>
+            <Link to={`/productDetails/${_id}`}> <button className="btn btn-sm btn-success">Details</button></Link>
+            <Link to={`/updateProduct/${_id}`}><button className="btn btn-sm btn-error">Update</button></Link>
           </div>
         </div>
       </div>

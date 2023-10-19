@@ -6,11 +6,15 @@ import Home from "../Component/Home/Home";
 import Login from "../Component/Login/Login";
 import Register from "../Component/Register/Register";
 import AllProduct from "../Component/AllProduct/AllProduct";
+import UpdateProducts from "../Component/UpdateProducts/UpdateProducts";
+import Error from "../Component/Error/Error";
+import ProductDetails from "../Component/ProductDetails/ProductDetails";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: "/",
@@ -37,6 +41,16 @@ const router = createBrowserRouter([
         path: "/allProduct/:brand_name",
         element: <AllProduct></AllProduct>,
         loader: () => fetch('http://localhost:5000/product')
+      },
+      {
+        path: "/updateProduct/:id",
+        element: <UpdateProducts></UpdateProducts>,
+        loader: ({params}) => fetch(`http://localhost:5000/product/${params.id}`)
+      },
+      {
+        path: "/productDetails/:id",
+        element: <ProductDetails></ProductDetails>,
+        loader: ({params}) => fetch(`http://localhost:5000/product/${params.id}`)
       }
     ]
   }
