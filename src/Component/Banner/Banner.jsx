@@ -10,7 +10,11 @@ import 'swiper/css/navigation';
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
-import car1 from '../../assets/car1.jpg'
+import banner1 from '../../assets/banner1.jpg'
+import banner2 from '../../assets/banner2.jpg'
+import banner3 from '../../assets/banner3.jpg'
+import banner4 from '../../assets/banner4.jpg'
+
 function Banner() {
   return (
     <Swiper
@@ -25,10 +29,13 @@ function Banner() {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper h-[100vh]"
+        className="mySwiper h-[50vh] md:h-[80vh] lg:h-[120vh]"
       >
-        <SwiperSlide><img className='h-[100vh] w-full' src={car1} alt="" /></SwiperSlide>
-        <SwiperSlide><img className='h-[100vh] w-full' src="https://images.unsplash.com/photo-1539043776866-20389265e4da?auto=format&fit=crop&q=80&w=1470&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" /></SwiperSlide>
+        <SwiperSlide><img className='md:h-[80vh] h-[50vh] lg:h-[120vh] w-full' src={banner1} alt="" /></SwiperSlide>
+        <SwiperSlide><img className='md:h-[80vh] h-[50vh] lg:h-[120vh] w-full' src={banner2} alt="" /></SwiperSlide>
+        <SwiperSlide><img className='md:h-[80vh] h-[50vh] lg:h-[120vh] w-full' src={banner3} alt="" /></SwiperSlide>
+        <SwiperSlide><img className='md:h-[80vh] h-[50vh] lg:h-[120vh] w-full' src={banner4} alt="" /></SwiperSlide>
+        
         
       </Swiper>
   );

@@ -19,11 +19,11 @@ const AllProductCard = ({ product }) => {
           <h2 className="text-lg font-semibold">Brand Name: {brand}</h2>
           <h2 className="text-lg font-semibold">Type: {type}</h2>
           <h2 className="text-lg font-semibold">Price: {price}</h2>
-          {/* <p>{description}</p> */}
 
           {
             description.length > 150 ? <p>{description.slice(0, 100)}</p> : <p>{description}</p>
           }
+          
           <small>Ratings: {rating}</small>
           <div className="flex justify-center gap-5 my-3">
             <Link to={`/productDetails/${_id}`}>

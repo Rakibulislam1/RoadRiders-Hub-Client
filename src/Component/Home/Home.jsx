@@ -11,7 +11,7 @@ const Home = () => {
       <Banner></Banner>
       {/* ============= */}
       <div>
-        <h2 className="text-center">Our Brands</h2>
+        <h2 className="text-center mt-10 text-2xl font-bold">Our Brands</h2>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 my-10">
           {brands.map((brand) => (
             <Brands key={brand.id} brand={brand}></Brands>

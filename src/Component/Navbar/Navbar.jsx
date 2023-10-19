@@ -33,10 +33,10 @@ const Navbar = () => {
 
   return (
     <div className="bg-[#11285A]">
-      <div className="flex justify-between items-center py-4 max-w-7xl mx-auto">
-        <div className="">
+      <div className="flex justify-between items-center py-4 max-w-7xl mx-auto px-5">
+        <div className="z-10">
           <div className="dropdown">
-            <label tabIndex={0} className="text-white block px-4 lg:hidden">
+            <label tabIndex={0} className="text-white block lg:hidden mr-5">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
