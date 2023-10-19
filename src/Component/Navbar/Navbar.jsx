@@ -1,6 +1,18 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../Hook/AuthProvider";
 
 const Navbar = () => {
+
+  const {user, logOut} = useContext(AuthContext)
+
+
+  const handleSignOut = () => {
+    logOut()
+    .then()
+    .catch()
+  }
+
   const navLinks = (
     <>
       <NavLink
@@ -33,7 +45,7 @@ const Navbar = () => {
 
   return (
     <div className="bg-[#11285A]">
-      <div className="flex justify-between items-center py-4 max-w-7xl mx-auto px-5">
+      <div className="flex justify-between items-center py-4 max-w-7xl mx-auto md:px-5 lg:px-0">
         <div className="z-10">
           <div className="dropdown">
             <label tabIndex={0} className="text-white block lg:hidden mr-5">
@@ -65,8 +77,21 @@ const Navbar = () => {
           <ul className="flex gap-6 px-1 text-white">{navLinks}</ul>
         </div>
         <div className="flex gap-2">
-          <Link to='/login' className="btn btn-sm bg-[#F5C34B] border-none text-white normal-case hover:bg-[#ddb24e]">Log in</Link>
-          <Link to='/register' className="btn btn-sm bg-[#F5C34B] border-none text-white normal-case hover:bg-[#ddb24e]">Register</Link>
+
+          {
+            user ?
+            <button onClick={handleSignOut} className="btn btn-sm bg-[#F5C34B] border-none text-white normal-case hover:bg-[#ddb24e]">Sign Out</button>
+            :
+            <Link to='/login'><button className="btn btn-sm bg-[#F5C34B] border-none text-white normal-case hover:bg-[#ddb24e]">Log In</button></Link>
+          }
+          
+          {
+            user ? 
+            ""
+            :
+            <Link to='/register' className="btn btn-sm bg-[#F5C34B] border-none text-white normal-case hover:bg-[#ddb24e]">Register</Link>
+          } 
+         
         </div>
       </div>
     </div>

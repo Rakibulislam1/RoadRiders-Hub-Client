@@ -5,7 +5,7 @@ import eggShape from "../../assets/eggshape.svg";
 
 const WhyChooseUs = () => {
   return (
-    <div className="max-w-7xl mx-auto my-10 px-5">
+    <div className="max-w-7xl mx-auto my-10 px-5 lg:px-0">
       <h2 className="text-center my-10 text-2xl font-bold">Why Choose Us?</h2>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
         <div className="card card-compact bg-base-100 hover:shadow-xl transition duration-500 p-5">

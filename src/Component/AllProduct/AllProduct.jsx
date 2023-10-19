@@ -10,7 +10,7 @@ const AllProduct = () => {
   return (
     <div>
       <Banner></Banner>
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-5 px-5">
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-5 px-5 lg:px-0">
         {allProduct.length ? (
           allProduct.map((product) => (
             <AllProductCard
