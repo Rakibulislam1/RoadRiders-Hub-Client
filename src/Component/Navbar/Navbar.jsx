@@ -1,24 +1,43 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Hook/AuthProvider";
+import Swal from "sweetalert2";
+import avatar from "../../assets/user.png"
 
 const Navbar = () => {
-
-  const {user, logOut} = useContext(AuthContext)
-
+  const { user, logOut } = useContext(AuthContext);
 
   const handleSignOut = () => {
     logOut()
-    .then()
-    .catch()
-  }
+      .then((result) => {
+        console.log(result);
+
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: "Logged out successfully",
+        });
+      })
+      .catch();
+  };
 
   const navLinks = (
     <>
       <NavLink
         to="/"
         className={({ isActive, isPending }) =>
-          isPending ? "pending" : isActive ? "text-[#F5C34B] underline" : ""
+          isPending ? "pending" : isActive ? "text-[#264da0] underline" : ""
         }
       >
         Home
@@ -26,7 +45,7 @@ const Navbar = () => {
       <NavLink
         to="/addProduct"
         className={({ isActive, isPending }) =>
-          isPending ? "pending" : isActive ? "text-[#F5C34B] underline" : ""
+          isPending ? "pending" : isActive ? "text-[#264da0] underline" : ""
         }
       >
         Add Product
@@ -34,12 +53,11 @@ const Navbar = () => {
       <NavLink
         to="/myCart"
         className={({ isActive, isPending }) =>
-          isPending ? "pending" : isActive ? "text-[#F5C34B] underline" : ""
+          isPending ? "pending" : isActive ? "text-[#264da0] underline" : ""
         }
       >
         My Cart
       </NavLink>
-      
     </>
   );
 
@@ -71,27 +89,58 @@ const Navbar = () => {
               {navLinks}
             </ul>
           </div>
-          <a className="text-xl text-[#F5C34B]">RoadRiders Hub</a>
+          <a className="text-xl font-bold text-[#264da0]">
+            <span className="text-white">RoadRiders</span> Hub
+          </a>
         </div>
         <div className="hidden lg:flex">
           <ul className="flex gap-6 px-1 text-white">{navLinks}</ul>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center">
 
           {
-            user ?
-            <button onClick={handleSignOut} className="btn btn-sm bg-[#F5C34B] border-none text-white normal-case hover:bg-[#ddb24e]">Sign Out</button>
+            user ? 
+            <div className="avatar">
+              <div className="w-8 rounded-full border-2 border-emerald-500">
+                <img src={user.photoURL ? user.photoURL : avatar} />
+              </div>
+            </div>
             :
-            <Link to='/login'><button className="btn btn-sm bg-[#F5C34B] border-none text-white normal-case hover:bg-[#ddb24e]">Log In</button></Link>
+            ""
           }
-          
+
           {
             user ? 
-            ""
+            <span className="text-white">{user.displayName}</span>
             :
-            <Link to='/register' className="btn btn-sm bg-[#F5C34B] border-none text-white normal-case hover:bg-[#ddb24e]">Register</Link>
-          } 
-         
+            ""
+          }
+
+          {user ? (
+            <button
+              onClick={handleSignOut}
+              className="btn btn-sm bg-[#11285A] border-none text-white normal-case hover:bg-[#264da0]"
+            >
+              Sign Out
+            </button>
+          ) : (
+            <Link to="/login">
+              <button className="btn btn-sm bg-[#11285A] border-none text-white normal-case hover:bg-[#264da0]">
+                Log In
+              </button>
+            </Link>
+          )}
+
+          {user ? (
+            ""
+          ) : (
+            <Link
+              to="/register"
+              className="btn btn-sm bg-[#11285A] border-none text-white normal-case hover:bg-[#264da0]"
+            >
+              Register
+            </Link>
+          )}
         </div>
       </div>
     </div>

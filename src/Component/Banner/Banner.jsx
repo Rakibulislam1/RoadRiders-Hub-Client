@@ -31,11 +31,20 @@ function Banner() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper h-[50vh] md:h-[80vh] lg:h-[120vh]"
       >
-        <SwiperSlide><img className='md:h-[80vh] h-[50vh] lg:h-[120vh] w-full' src={banner1} alt="" /></SwiperSlide>
-        <SwiperSlide><img className='md:h-[80vh] h-[50vh] lg:h-[120vh] w-full' src={banner2} alt="" /></SwiperSlide>
-        <SwiperSlide><img className='md:h-[80vh] h-[50vh] lg:h-[120vh] w-full' src={banner3} alt="" /></SwiperSlide>
-        <SwiperSlide><img className='md:h-[80vh] h-[50vh] lg:h-[120vh] w-full' src={banner4} alt="" /></SwiperSlide>
-        
+        <div className='relative'>
+        <SwiperSlide className='relative w-max before:absolute before:left-0 before:right-0 before:top-0 before:z-10 before:h-full before:w-full before:bg-blue-950 before:opacity-30'><img className='md:h-[80vh] h-[50vh] lg:h-[120vh] w-full bg-cover bg-center bg-no-repeat' src={banner1} alt="" /></SwiperSlide>
+        <SwiperSlide className='relative w-max before:absolute before:left-0 before:right-0 before:top-0 before:z-10 before:h-full before:w-full before:bg-blue-950 before:opacity-30'><img className='md:h-[80vh] h-[50vh] lg:h-[120vh] w-full bg-cover bg-center bg-no-repeat' src={banner2} alt="" /></SwiperSlide>
+        <SwiperSlide className='relative w-max before:absolute before:left-0 before:right-0 before:top-0 before:z-10 before:h-full before:w-full before:bg-blue-950 before:opacity-30'><img className='md:h-[80vh] h-[50vh] lg:h-[120vh] w-full bg-cover bg-center bg-no-repeat' src={banner3} alt="" /></SwiperSlide>
+        <SwiperSlide className='relative w-max before:absolute before:left-0 before:right-0 before:top-0 before:z-10 before:h-full before:w-full before:bg-blue-950 before:opacity-30'><img className='md:h-[80vh] h-[50vh] lg:h-[120vh] w-full bg-cover bg-center bg-no-repeat' src={banner4} alt="" /></SwiperSlide>
+        </div>
+        <div className='absolute z-10 top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+          <h2 className='lg:text-4xl md:text-3xl text-lg font-bold text-white text-center capitalize'>The Easiest Way To Buy Your Next Car</h2>
+          <div className='flex lg:gap-10 gap-5 justify-center'>
+          <a className='text-white text-center underline lg:text-lg md:block hidden lg:mt-8 mt-2 hover:text-[#11285A]' href="">Shop New</a>
+          <a className='text-white text-center underline lg:text-lg md:block hidden lg:mt-8 mt-2 hover:text-[#11285A]' href="">Shop Used</a>
+          <a className='text-white text-center underline lg:text-lg md:block hidden lg:mt-8 mt-2 hover:text-[#11285A]' href="">Shop Electric</a>
+          </div>
+        </div>
         
       </Swiper>
   );

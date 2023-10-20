@@ -6,7 +6,7 @@ const AllProductCard = ({ product }) => {
 
   return (
     <div className="my-10">
-      <div className="bg-blue-100 shadow-xl rounded-lg">
+      <div className="bg-base-100 shadow-xl rounded-lg">
         <figure>
           <img
             className="h-[200px] w-full rounded-t-lg"
@@ -21,17 +21,17 @@ const AllProductCard = ({ product }) => {
           <h2 className="text-lg font-semibold">Price: {price}</h2>
 
           {
-            description.length > 150 ? <p>{description.slice(0, 100)}</p> : <p>{description}</p>
+            description.length > 150 ? <p>{description.slice(0, 120)}</p> : <p>{description}</p>
           }
           
           <small>Ratings: {rating}</small>
           <div className="flex justify-center gap-5 my-3">
             <Link to={`/productDetails/${_id}`}>
               {" "}
-              <button className="btn btn-sm btn-success">Details</button>
+              <button className="btn btn-sm text-white border-none hover:bg-[#264da0] bg-[#11285A]">Details</button>
             </Link>
             <Link to={`/updateProduct/${_id}`}>
-              <button className="btn btn-sm btn-error">Update</button>
+              <button className="btn btn-sm text-white border-none hover:bg-[#264da0] bg-[#11285A]">Update</button>
             </Link>
           </div>
         </div>

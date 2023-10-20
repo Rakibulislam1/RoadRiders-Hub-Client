@@ -1,38 +1,77 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Hook/AuthProvider";
 import googleImg from "../../assets/google.png";
-
-
+import Swal from "sweetalert2";
 
 const Login = () => {
+  const { signIn, googleSignIn } = useContext(AuthContext);
 
-  const {signIn, googleSignIn} = useContext(AuthContext)
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const handleLogin = e => {
-    e.preventDefault()
+  const handleLogin = (e) => {
+    e.preventDefault();
     const form = new FormData(e.currentTarget);
-    const email = form.get('email');
-    const password = form.get('password');
+    const email = form.get("email");
+    const password = form.get("password");
     signIn(email, password)
-    .then(result => {
-      console.log(result);
-    })
-    .catch(error => {
-      console.error(error);
-    })
-  }
+      .then((result) => {
+        console.log(result);
+
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: "Signed in successfully",
+        });
+
+        navigate(location?.state ? location?.state : "/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   const handleGoogleLogin = () => {
     googleSignIn()
-    .then(result => {
-      console.log(result);
-    })
-    .catch(error => {
-      console.error(error.message);
-    })
-  }
+      .then((result) => {
+        console.log(result);
+
+        navigate(location?.state ? location?.state : "/");
+
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: "Signed in successfully",
+        });
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
+  };
 
   return (
     <div>
@@ -74,10 +113,23 @@ const Login = () => {
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
-                <Link><span onClick={handleGoogleLogin} className="flex justify-center flex-wrap items-center mt-5 text-blue-700 hover:text-purple-900 font-semibold"><img className="w-10" src={googleImg} />Login With Google</span></Link>
-                <span className="mt-4 text-center">Don't have account ? Please <Link to='/register' className="text-blue-700 font-bold">Register</Link> </span>
               </div>
             </form>
+            <Link>
+              <span
+                onClick={handleGoogleLogin}
+                className="flex justify-center flex-wrap items-center text-blue-700 hover:text-purple-900 font-semibold"
+              >
+                <img className="w-10" src={googleImg} />
+                Login With Google
+              </span>
+            </Link>
+            <span className="mt-4 mb-10 text-center">
+              Don't have account ? Please{" "}
+              <Link to="/register" className="text-blue-700 font-bold">
+                Register
+              </Link>{" "}
+            </span>
           </div>
         </div>
       </div>

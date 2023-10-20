@@ -9,6 +9,7 @@ import AllProduct from "../Component/AllProduct/AllProduct";
 import UpdateProducts from "../Component/UpdateProducts/UpdateProducts";
 import Error from "../Component/Error/Error";
 import ProductDetails from "../Component/ProductDetails/ProductDetails";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -23,11 +24,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/addProduct",
-        element: <AddProduct></AddProduct>,
+        element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>,
       },
       {
         path: "/myCart",
-        element: <MyCart></MyCart>,
+        element: <PrivateRoute><MyCart></MyCart></PrivateRoute>,
       },
       {
         path: "/login",
@@ -39,19 +40,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/allProduct/:brand_name",
-        element: <AllProduct></AllProduct>,
+        element: <PrivateRoute><AllProduct></AllProduct></PrivateRoute>,
         loader: ({ params }) =>
           fetch("http://localhost:5000/allProduct/" + params.brand_name),
       },
       {
         path: "/updateProduct/:id",
-        element: <UpdateProducts></UpdateProducts>,
+        element: <PrivateRoute><UpdateProducts></UpdateProducts></PrivateRoute>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/product/${params.id}`),
       },
       {
         path: "/productDetails/:id",
-        element: <ProductDetails></ProductDetails>,
+        element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/product/${params.id}`),
       },

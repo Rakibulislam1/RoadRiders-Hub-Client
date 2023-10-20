@@ -54,8 +54,8 @@ const UpdateProducts = () => {
   return (
     <div>
       <div className="max-w-7xl mx-auto px-5 lg:px-0">
-        <div className="my-16 bg-[#11285A] lg:px-20 px-5 pt-5 pb-20 rounded-lg">
-          <h2 className="text-center md:text-4xl text-xl font-semibold my-5 text-white">
+        <div className="my-16 bg-base-100 shadow-2xl lg:px-20 px-5 pt-5 pb-20 rounded-lg">
+          <h2 className="text-center md:text-4xl text-xl font-semibold my-5 text-[#11285A]">
             Update Product Here : {name}
           </h2>
 
@@ -64,7 +64,7 @@ const UpdateProducts = () => {
               {/* name & brand */}
               <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text text-white">Name</span>
+                  <span className="label-text">Name</span>
                 </label>
                 <label>
                   <input
@@ -72,13 +72,13 @@ const UpdateProducts = () => {
                     name="name"
                     defaultValue={name}
                     placeholder="Name"
-                    className="input input-bordered w-full capitalize"
+                    className="input input-bordered w-full"
                   />
                 </label>
               </div>
               <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text text-white">Brand Name</span>
+                  <span className="label-text">Brand Name</span>
                 </label>
                 <label>
                   <input
@@ -86,7 +86,7 @@ const UpdateProducts = () => {
                     name="brand"
                     defaultValue={brand}
                     placeholder="Brand Name"
-                    className="input input-bordered w-full capitalize"
+                    className="input input-bordered w-full"
                   />
                 </label>
               </div>
@@ -96,7 +96,7 @@ const UpdateProducts = () => {
               {/* type & price */}
               <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text text-white">Type</span>
+                  <span className="label-text">Type</span>
                 </label>
                 <label>
                   <input
@@ -104,13 +104,13 @@ const UpdateProducts = () => {
                     name="type"
                     defaultValue={type}
                     placeholder="Name"
-                    className="input input-bordered w-full capitalize"
+                    className="input input-bordered w-full"
                   />
                 </label>
               </div>
               <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text text-white">Price</span>
+                  <span className="label-text">Price</span>
                 </label>
                 <label>
                   <input
@@ -118,7 +118,7 @@ const UpdateProducts = () => {
                     name="price"
                     defaultValue={price}
                     placeholder="price"
-                    className="input input-bordered w-full capitalize"
+                    className="input input-bordered w-full"
                   />
                 </label>
               </div>
@@ -128,7 +128,7 @@ const UpdateProducts = () => {
               {/* description & Rating */}
               <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text text-white">
+                  <span className="label-text">
                     Short description
                   </span>
                 </label>
@@ -138,13 +138,13 @@ const UpdateProducts = () => {
                     name="description"
                     defaultValue={description}
                     placeholder="Short description"
-                    className="input input-bordered w-full capitalize"
+                    className="input input-bordered w-full"
                   />
                 </label>
               </div>
               <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text text-white">Rating</span>
+                  <span className="label-text">Rating</span>
                 </label>
                 <label>
                   <input
@@ -152,7 +152,7 @@ const UpdateProducts = () => {
                     name="rating"
                     defaultValue={rating}
                     placeholder="rating"
-                    className="input input-bordered w-full upp"
+                    className="input input-bordered w-full"
                   />
                 </label>
               </div>
@@ -162,7 +162,7 @@ const UpdateProducts = () => {
               {/* photo URL */}
               <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text text-white">Photo URL</span>
+                  <span className="label-text">Photo URL</span>
                 </label>
                 <label>
                   <input
@@ -170,13 +170,13 @@ const UpdateProducts = () => {
                     name="photo"
                     defaultValue={photo}
                     placeholder="Photo URL"
-                    className="input input-bordered w-full capitalize"
+                    className="input input-bordered w-full"
                   />
                 </label>
               </div>
             </div>
 
-            <button className="btn bg-[#F5C34B] border-none text-white capitalize hover:bg-[#ddb24e] btn-block mt-10">
+            <button className="btn bg-[#11285A] hover:bg-[#264da0] border-none text-white capitalize btn-block mt-10">
               Update Your Product
             </button>
           </form>

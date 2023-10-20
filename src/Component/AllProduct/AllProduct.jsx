@@ -1,16 +1,14 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import AllProductCard from "./AllProductCard";
 import Banner from "../Banner/Banner";
 
 const AllProduct = () => {
   const allProduct = useLoaderData();
-  // const filterProduct = [useParams()];
-  console.log(allProduct);
 
   return (
     <div>
       <Banner></Banner>
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-5 px-5 lg:px-0">
+      <div className="grid lg:grid-cols-3  md:grid-cols-2 gap-5 px-5 lg:px-0 max-w-7xl mx-auto">
         {allProduct.length ? (
           allProduct.map((product) => (
             <AllProductCard

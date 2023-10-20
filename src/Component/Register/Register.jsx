@@ -1,11 +1,13 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Hook/AuthProvider";
-
+import Swal from "sweetalert2";
 
 const Register = () => {
- 
-  const { createUser } = useContext(AuthContext)
+  const { createUser } = useContext(AuthContext);
+
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -16,15 +18,33 @@ const Register = () => {
 
     console.log(email, password);
 
-
     // create user
     createUser(email, password)
-    .then(result => {
-      console.log(result);
-    })
-    .catch(error => {
-      console.error(error);
-    })
+      .then((result) => {
+        console.log(result);
+
+        navigate(location?.state ? location?.state : "/");
+
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: "Signed up successfully",
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
@@ -62,14 +82,14 @@ const Register = () => {
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Register</button>
-                <span className="mt-4 text-center">
-                  Already have an account ? Please{" "}
-                  <Link to="/login" className="text-blue-700 font-bold">
-                    Login
-                  </Link>{" "}
-                </span>
               </div>
             </form>
+            <span className="text-center mb-10">
+              Already have an account ? Please{" "}
+              <Link to="/login" className="text-blue-700 font-bold">
+                Login
+              </Link>{" "}
+            </span>
           </div>
         </div>
       </div>

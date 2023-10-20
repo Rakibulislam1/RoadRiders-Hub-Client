@@ -46,35 +46,35 @@ const AddProduct = () => {
 
   return (
    <div className='max-w-7xl mx-auto px-5 lg:px-0'>
-      <div className="my-16 bg-[#11285A] lg:px-20 px-5 pt-5 pb-20 rounded-lg">
-      <h2 className="text-center md:text-4xl text-xl font-semibold my-5 text-white">Add Your Product Here</h2>
+      <div className="my-16 bg-base-100 shadow-2xl lg:px-20 px-5 pt-5 pb-20 rounded-lg">
+      <h2 className="text-center md:text-4xl text-xl font-semibold my-5 text-[#11285A]">Add Your Product Here</h2>
 
       <form onSubmit={handleAddProduct}>
         <div className="flex md:gap-5 flex-col md:flex-row">
           {/* name & brand */}
           <div className="form-control w-full">
             <label className="label">
-              <span className="label-text text-white">Name</span>
+              <span className="label-text">Name</span>
             </label>
             <label>
               <input
                 type="text"
                 name="name"
                 placeholder="Name"
-                className="input input-bordered w-full capitalize"
+                className="input input-bordered w-full"
               />
             </label>
           </div>
           <div className="form-control w-full">
             <label className="label">
-              <span className="label-text text-white">Brand Name</span>
+              <span className="label-text">Brand Name</span>
             </label>
             <label>
               <input
                 type="text"
                 name="brand"
                 placeholder="Brand Name"
-                className="input input-bordered w-full capitalize"
+                className="input input-bordered w-full"
               />
             </label>
           </div>
@@ -85,27 +85,27 @@ const AddProduct = () => {
           {/* type & price */}
           <div className="form-control w-full">
             <label className="label">
-              <span className="label-text text-white">Type</span>
+              <span className="label-text">Type</span>
             </label>
             <label>
               <input
                 type="text"
                 name="type"
                 placeholder="Name"
-                className="input input-bordered w-full capitalize"
+                className="input input-bordered w-full"
               />
             </label>
           </div>
           <div className="form-control w-full">
             <label className="label">
-              <span className="label-text text-white">Price</span>
+              <span className="label-text">Price</span>
             </label>
             <label>
               <input
                 type="text"
                 name="price"
                 placeholder="price"
-                className="input input-bordered w-full capitalize"
+                className="input input-bordered w-full"
               />
             </label>
           </div>
@@ -115,27 +115,27 @@ const AddProduct = () => {
           {/* description & Rating */}
           <div className="form-control w-full">
             <label className="label">
-              <span className="label-text text-white">Short description</span>
+              <span className="label-text">Short description</span>
             </label>
             <label>
               <input
                 type="text"
                 name="description"
                 placeholder="Short description"
-                className="input input-bordered w-full capitalize"
+                className="input input-bordered w-full"
               />
             </label>
           </div>
           <div className="form-control w-full">
             <label className="label">
-              <span className="label-text text-white">Rating</span>
+              <span className="label-text">Rating</span>
             </label>
             <label>
               <input
                 type="text"
                 name="rating"
                 placeholder="rating"
-                className="input input-bordered w-full upp"
+                className="input input-bordered w-full"
               />
             </label>
           </div>
@@ -147,19 +147,19 @@ const AddProduct = () => {
           {/* photo URL */}
           <div className="form-control w-full">
             <label className="label">
-              <span className="label-text text-white">Photo URL</span>
+              <span className="label-text">Photo URL</span>
             </label>
             <label>
               <input
                 type="text"
                 name="photo"
                 placeholder="Photo URL"
-                className="input input-bordered w-full capitalize"
+                className="input input-bordered w-full"
               />
             </label>
           </div>
         </div>
-        <button className="btn bg-[#F5C34B] border-none text-white capitalize hover:bg-[#ddb24e] btn-block mt-10">Add Product</button>
+        <button className="btn bg-[#11285A] border-none text-white capitalize btn-block mt-10 hover:bg-[#264da0]">Add Product</button>
 
       </form>
     </div>
