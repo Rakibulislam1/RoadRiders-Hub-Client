@@ -1,4 +1,4 @@
-## About My Clent Site
+## About My Client Site
 
 - Register, Login, Logout functionality.
 - Add product to server site functionality.
