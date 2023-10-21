@@ -1,4 +1,3 @@
-
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Hook/AuthProvider";
 
@@ -9,13 +8,16 @@ const MyCart = () => {
   console.log(carts);
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:5000/request-cart", {
-        method: "POST",
-        headers: {
-          "Content-Type": "Application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
+      const response = await fetch(
+        "https://automotive-i0oyj7dpn-rakibulislam1.vercel.app/request-cart",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "Application/json",
+          },
+          body: JSON.stringify({ email }),
+        }
+      );
       const data = await response.json();
       setCarts(data);
     };
@@ -30,13 +32,16 @@ const MyCart = () => {
     });
 
     try {
-      const response = await fetch("http://localhost:5000/delete-cart-item", {
-        method: "DELETE",
-        body: JSON.stringify({ id, email }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://automotive-i0oyj7dpn-rakibulislam1.vercel.app/delete-cart-item",
+        {
+          method: "DELETE",
+          body: JSON.stringify({ id, email }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       if (!response.ok) throw new Error("deletion failed");
     } catch (err) {
       setCarts(originalCartItems);
@@ -45,10 +50,14 @@ const MyCart = () => {
   return (
     <>
       {!carts.length ? (
-        <h1 className="text-center my-10 text-2xl font-bold text-[#11285A]">Empty Cart</h1>
+        <h1 className="text-center my-10 text-2xl font-bold text-[#11285A]">
+          Empty Cart
+        </h1>
       ) : (
         <div>
-          <h2 className="text-center my-10 text-2xl font-bold text-[#11285A]">This is my Cart</h2>
+          <h2 className="text-center my-10 text-2xl font-bold text-[#11285A]">
+            This is my Cart
+          </h2>
           {carts.map((cart, index) => (
             <div className="container mx-auto" key={index}>
               <div className="card rounded-xl h-60 md:card-side bg-base-100 shadow-2xl my-10">

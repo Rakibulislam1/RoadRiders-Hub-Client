@@ -7,49 +7,53 @@ const UpdateProducts = () => {
   const { _id, name, photo, brand, type, price, description, rating } =
     updateProduct;
 
+  const handleUpdateProduct = (event) => {
+    event.preventDefault();
+    const form = event.target;
 
+    const name = form.name.value;
+    const brand = form.brand.value;
+    const type = form.type.value;
+    const price = form.price.value;
+    const description = form.description.value;
+    const rating = form.rating.value;
+    const photo = form.photo.value;
 
-    const handleUpdateProduct = event => {
-      event.preventDefault();
-      const form = event.target;
-  
-      const name = form.name.value;
-      const brand = form.brand.value;
-      const type = form.type.value;
-      const price = form.price.value;
-      const description = form.description.value;
-      const rating = form.rating.value;
-      const photo = form.photo.value;
-  
-      const updatedProduct = {
-        name, brand, type, price, description, rating, photo
-      }
-      console.log(updatedProduct);
-  
-      fetch(`http://localhost:5000/product/${_id}`, {
-        method: 'PUT',
+    const updatedProduct = {
+      name,
+      brand,
+      type,
+      price,
+      description,
+      rating,
+      photo,
+    };
+    console.log(updatedProduct);
+
+    fetch(
+      `https://automotive-i0oyj7dpn-rakibulislam1.vercel.app/product/${_id}`,
+      {
+        method: "PUT",
         headers: {
-          'content-type': 'application/json'
+          "content-type": "application/json",
         },
-        body: JSON.stringify(updatedProduct)
-      })
-      .then(res => res.json())
-      .then(data => {
+        body: JSON.stringify(updatedProduct),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
         console.log(data);
-        if(data.modifiedCount > 0){
+        if (data.modifiedCount > 0) {
           Swal.fire({
-            title: 'Success!',
-            text: 'Product Updated Successfully',
-            icon: 'success',
-            confirmButtonText: 'Ok'
-          })
+            title: "Success!",
+            text: "Product Updated Successfully",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
         }
-        form.reset()
-      })
-    }
-
-
-
+        form.reset();
+      });
+  };
 
   return (
     <div>
@@ -128,9 +132,7 @@ const UpdateProducts = () => {
               {/* description & Rating */}
               <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text">
-                    Short description
-                  </span>
+                  <span className="label-text">Short description</span>
                 </label>
                 <label>
                   <input

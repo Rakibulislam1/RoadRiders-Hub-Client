@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
-  const [regError , setRegError] =useState()
+  const [regError, setRegError] = useState();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -16,8 +16,6 @@ const Register = () => {
 
     const email = form.get("email");
     const password = form.get("password");
-
-
 
     if (password.length < 6) {
       setRegError("Password is less than 6 characters");
@@ -34,21 +32,24 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         console.log(result);
-        
+
         const {
           user: { email },
         } = result;
 
-        fetch("http://localhost:5000/create-user", {
-          method: "POST",
-          mode: "cors",
-          body: JSON.stringify({
-            email,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        fetch(
+          "https://automotive-i0oyj7dpn-rakibulislam1.vercel.app/create-user",
+          {
+            method: "POST",
+            mode: "cors",
+            body: JSON.stringify({
+              email,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         navigate(location?.state ? location?.state : "/");
 
         const Toast = Swal.mixin({

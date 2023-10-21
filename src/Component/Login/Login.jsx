@@ -11,7 +11,7 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [loginError, setLoginError] = useState()
+  const [loginError, setLoginError] = useState();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -26,16 +26,19 @@ const Login = () => {
           user: { email },
         } = result;
 
-        fetch("http://localhost:5000/create-user", {
-          method: "POST",
-          mode: "cors",
-          body: JSON.stringify({
-            email,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        fetch(
+          "https://automotive-i0oyj7dpn-rakibulislam1.vercel.app/create-user",
+          {
+            method: "POST",
+            mode: "cors",
+            body: JSON.stringify({
+              email,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         const Toast = Swal.mixin({
           toast: true,
@@ -66,21 +69,23 @@ const Login = () => {
       .then((result) => {
         console.log(result);
 
-        
         const {
           user: { email },
         } = result;
 
-        fetch("http://localhost:5000/create-user", {
-          method: "POST",
-          mode: "cors",
-          body: JSON.stringify({
-            email,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        fetch(
+          "https://automotive-i0oyj7dpn-rakibulislam1.vercel.app/create-user",
+          {
+            method: "POST",
+            mode: "cors",
+            body: JSON.stringify({
+              email,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         navigate(location?.state ? location?.state : "/");
 
@@ -144,12 +149,12 @@ const Login = () => {
                   </a>
                 </label>
               </div>
-              
+
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
               </div>
-            
-            <p className="text-red-700">{loginError}</p>
+
+              <p className="text-red-700">{loginError}</p>
             </form>
             <Link>
               <span
@@ -160,7 +165,7 @@ const Login = () => {
                 Login With Google
               </span>
             </Link>
-            
+
             <span className="mt-4 mb-10 text-center">
               Don't have account ? Please{" "}
               <Link to="/register" className="text-blue-700 font-bold">

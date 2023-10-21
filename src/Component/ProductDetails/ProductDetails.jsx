@@ -21,13 +21,16 @@ const ProductDetails = () => {
   } = product;
   console.log(product);
   const handleClick = async () => {
-    await fetch("http://localhost:5000/add-to-cart", {
-      method: "PUT",
-      body: JSON.stringify({ id, photo, brand, name, email, price }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    await fetch(
+      "https://automotive-i0oyj7dpn-rakibulislam1.vercel.app/add-to-cart",
+      {
+        method: "PUT",
+        body: JSON.stringify({ id, photo, brand, name, email, price }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
   };
 
   return (

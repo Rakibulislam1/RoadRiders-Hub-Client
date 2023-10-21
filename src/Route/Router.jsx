@@ -24,11 +24,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/addProduct",
-        element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AddProduct></AddProduct>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/myCart",
-        element: <PrivateRoute><MyCart></MyCart></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <MyCart></MyCart>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
@@ -40,21 +48,33 @@ const router = createBrowserRouter([
       },
       {
         path: "/allProduct/:brand_name",
-        element: <PrivateRoute><AllProduct></AllProduct></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AllProduct></AllProduct>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
-          fetch("http://localhost:5000/allProduct/" + params.brand_name),
+          fetch("https://automotive-i0oyj7dpn-rakibulislam1.vercel.app/allProduct/" + params.brand_name),
       },
       {
         path: "/updateProduct/:id",
-        element: <PrivateRoute><UpdateProducts></UpdateProducts></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <UpdateProducts></UpdateProducts>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/product/${params.id}`),
+          fetch(`https://automotive-i0oyj7dpn-rakibulislam1.vercel.app/product/${params.id}`),
       },
       {
         path: "/productDetails/:id",
-        element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <ProductDetails></ProductDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/product/${params.id}`),
+          fetch(`https://automotive-i0oyj7dpn-rakibulislam1.vercel.app/product/${params.id}`),
       },
     ],
   },
