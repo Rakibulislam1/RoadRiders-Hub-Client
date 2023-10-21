@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Hook/AuthProvider";
 import { useContext } from "react";
+import Swal from "sweetalert2";
 
 const ProductDetails = () => {
   const product = useLoaderData();
@@ -31,6 +32,23 @@ const ProductDetails = () => {
         },
       }
     );
+
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
+    });
+
+    Toast.fire({
+      icon: "success",
+      title: "Product added successfully",
+    });
   };
 
   return (
