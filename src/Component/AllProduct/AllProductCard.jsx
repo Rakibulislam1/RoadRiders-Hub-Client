@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Rating } from "@material-tailwind/react";
 
 /* eslint-disable react/prop-types */
 const AllProductCard = ({ product }) => {
@@ -9,7 +10,7 @@ const AllProductCard = ({ product }) => {
       <div className="bg-base-100 shadow-xl rounded-lg">
         <figure>
           <img
-            className="h-[200px] w-full rounded-t-lg"
+            className="h-[280px] w-full rounded-t-lg"
             src={photo}
             alt={photo}
           />
@@ -25,6 +26,8 @@ const AllProductCard = ({ product }) => {
           }
           
           <small>Ratings: {rating}</small>
+          
+
           <div className="flex justify-center gap-5 my-3">
             <Link to={`/productDetails/${_id}`}>
               {" "}

@@ -58,7 +58,7 @@ const PeopleReview = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div>  
     </div>
   );
 };

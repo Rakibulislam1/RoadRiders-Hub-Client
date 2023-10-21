@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Hook/AuthProvider";
 import googleImg from "../../assets/google.png";
@@ -11,6 +11,8 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const [loginError, setLoginError] = useState()
+
   const handleLogin = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
@@ -19,6 +21,21 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         console.log(result);
+
+        const {
+          user: { email },
+        } = result;
+
+        fetch("http://localhost:5000/create-user", {
+          method: "POST",
+          mode: "cors",
+          body: JSON.stringify({
+            email,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
         const Toast = Swal.mixin({
           toast: true,
@@ -40,7 +57,7 @@ const Login = () => {
         navigate(location?.state ? location?.state : "/");
       })
       .catch((error) => {
-        console.error(error);
+        setLoginError(error.message);
       });
   };
 
@@ -48,6 +65,22 @@ const Login = () => {
     googleSignIn()
       .then((result) => {
         console.log(result);
+
+        
+        const {
+          user: { email },
+        } = result;
+
+        fetch("http://localhost:5000/create-user", {
+          method: "POST",
+          mode: "cors",
+          body: JSON.stringify({
+            email,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
         navigate(location?.state ? location?.state : "/");
 
@@ -81,7 +114,7 @@ const Login = () => {
             <h1 className="text-5xl font-bold mb-6">Login now!</h1>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form onClick={handleLogin} className="card-body">
+            <form onSubmit={handleLogin} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -111,9 +144,12 @@ const Login = () => {
                   </a>
                 </label>
               </div>
+              
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
               </div>
+            
+            <p className="text-red-700">{loginError}</p>
             </form>
             <Link>
               <span
@@ -124,6 +160,7 @@ const Login = () => {
                 Login With Google
               </span>
             </Link>
+            
             <span className="mt-4 mb-10 text-center">
               Don't have account ? Please{" "}
               <Link to="/register" className="text-blue-700 font-bold">

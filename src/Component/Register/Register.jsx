@@ -1,10 +1,11 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Hook/AuthProvider";
 import Swal from "sweetalert2";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
+  const [regError , setRegError] =useState()
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -16,13 +17,38 @@ const Register = () => {
     const email = form.get("email");
     const password = form.get("password");
 
-    console.log(email, password);
+
+
+    if (password.length < 6) {
+      setRegError("Password is less than 6 characters");
+      return;
+    } else if (!/[A-Z]/.test(password)) {
+      setRegError("Password don't have a capital letter");
+      return;
+    } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      setRegError("Password don't have a special character");
+      return;
+    }
 
     // create user
     createUser(email, password)
       .then((result) => {
         console.log(result);
+        
+        const {
+          user: { email },
+        } = result;
 
+        fetch("http://localhost:5000/create-user", {
+          method: "POST",
+          mode: "cors",
+          body: JSON.stringify({
+            email,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
         navigate(location?.state ? location?.state : "/");
 
         const Toast = Swal.mixin({
@@ -80,6 +106,7 @@ const Register = () => {
                   required
                 />
               </div>
+              <p className="text-red-700">{regError}</p>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Register</button>
               </div>

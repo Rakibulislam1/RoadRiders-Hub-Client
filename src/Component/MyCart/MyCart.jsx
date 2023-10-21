@@ -1,54 +1,88 @@
-import { useEffect, useState } from "react";
+
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../Hook/AuthProvider";
 
 const MyCart = () => {
-  const [cart, setCart] = useState([]);
-
+  const data = useContext(AuthContext);
+  const email = data.user.email;
+  const [carts, setCarts] = useState([]);
+  console.log(carts);
   useEffect(() => {
-    const myCart = JSON.parse(localStorage.getItem("my-cart"));
-    setCart(myCart);
+    const fetchData = async () => {
+      const response = await fetch("http://localhost:5000/request-cart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "Application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+      const data = await response.json();
+      setCarts(data);
+    };
+    fetchData();
   }, []);
 
-  const handleDelete = (id) => {
-    setCart((items) => {
+  const deleteHandle = async (id) => {
+    const originalCartItems = [...carts];
+    setCarts((items) => {
       const data = items.filter((item) => item.id !== id);
-      localStorage.setItem("my-cart", JSON.stringify(data));
       return data;
     });
-  };
 
+    try {
+      const response = await fetch("http://localhost:5000/delete-cart-item", {
+        method: "DELETE",
+        body: JSON.stringify({ id, email }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) throw new Error("deletion failed");
+    } catch (err) {
+      setCarts(originalCartItems);
+    }
+  };
   return (
-    <div>
-      <h2>This is my Cart</h2>
-      <div>
-        {cart.map((item, index) => (
-          <div key={index}>
-            <div className="m-2 flex">
-              <h2 className="py-4 px-6 inline-block">{item.name}</h2>
-              <button
-                className="bg-red-600 py-2 inline-block px-4 ml-auto"
-                onClick={() => handleDelete(item.id)}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="bg-white"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                  />
-                </svg>
-              </button>
+    <>
+      {!carts.length ? (
+        <h1 className="text-center my-10 text-2xl font-bold text-[#11285A]">Empty Cart</h1>
+      ) : (
+        <div>
+          <h2 className="text-center my-10 text-2xl font-bold text-[#11285A]">This is my Cart</h2>
+          {carts.map((cart, index) => (
+            <div className="container mx-auto" key={index}>
+              <div className="card rounded-xl h-60 md:card-side bg-base-100 shadow-2xl my-10">
+                <img className="h-full" src={cart.photo} alt="Movie" />
+                <div className="card-body">
+                  <div className="flex">
+                    <p className="text-xl font-semibold">{cart.name}</p>
+                  </div>
+
+                  <p className="font-medium">Price : ${cart.price}</p>
+                  <div className="flex items-center gap-2 text-sm font-medium text-gray-500"></div>
+                  <hr className="my-1" />
+
+                  <div className="card-actions justify-end">
+                    <button
+                      onClick={() => deleteHandle(cart.id)}
+                      className="btn btn-ghost text-white bg-[#264da0] font-semibold hover:bg-[#264da0]"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
+          ))}
+        </div>
+      )}
+    </>
   );
 };
 
 export default MyCart;
+
+/**
+ *
+ *
+ */
